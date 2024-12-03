@@ -1,4 +1,7 @@
-const { BedrockClient } = require("@aws-sdk/client-bedrock");
+const {
+  BedrockAgentRuntimeClient,
+} = require("@aws-sdk/client-bedrock-agent-runtime");
+const axios = require("axios");
 
 const systemPrompt =
   "You're an professional solution architect at AWS and working with Solution Architect in a Digital Bank. Help them draw a clear, reliable and structured system architecture.";
@@ -49,12 +52,40 @@ Use this description to draw system architecture: <description>${userQuery}</des
 `;
 }
 
-module.exports = function lambdaHandler(ctx, event) {
-  const client = new BedrockClient();
+/**
+ * This lambda function is a sync execution, that meant it has to wait
+ * Bedrock Agent response `Diagram as Code` result and continuously send
+ * a request to Diagram.NET API to get a `Diagram as Image`.
+ * @param {*} ctx
+ * @param {*} event
+ * @returns
+ */
+module.exports.handler = async function (ctx, event) {
+  const client = new BedrockAgentRuntimeClient();
+  const input = {
+    body: {
+      prompt: "",
+      temperature: 0.2,
+      p: 0.01,
+      k: 0,
+      return_likelihoods: "NONE",
+    },
+    accept: "application/json",
+    contentType: "application/json",
+    modelId: "",
+  };
 
   try {
-    return {};
+    // Send request to Bedrock Agent
+
+    // Send request to Diagram.NET
+
+    return {
+      statusCode: 200,
+    };
   } catch (error) {
-    return {};
+    return {
+      statusCode: 500,
+    };
   }
 };

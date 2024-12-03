@@ -2,6 +2,8 @@
 
 Work, build, test, visualize and deploy your infrastructure to AWS Cloud faster using Generative AI (powered by Bedrock).
 
+![architecture](./assets/architecture.png)
+
 ## About
 
 Đây là một giải pháp của nhóm **C4L** trong cuộc thi tìm kiếm giải pháp số của HD Bank, hay còn được gọi là HD Bank Hackathon 2024. Giải pháp mà nhóm chúng tôi mang tới được mô tả thông qua các bước như sau:
